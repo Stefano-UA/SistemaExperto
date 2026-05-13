@@ -37,7 +37,7 @@ class Chooser:
             list[str],
             questionary.checkbox(
                 msg,
-                choices=[Choice(**kwargs) for kwargs in self._choices],
+                choices=[Choice(**kwargs) for kwargs in self._choices], qmark='', instruction=' ',
                 validate=lambda x: True if (self._min_n <= len(x) <= self._max_n) else f'You must select between {self._min_n} and {self._max_n} options.'
             ).ask()
         )
