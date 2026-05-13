@@ -143,7 +143,12 @@ class Data:
                     line = line.strip()
                     if ('->' in line):
                         key, value = line.split('->', 1)
-                        self._mappings[key.strip()] = value.strip()
+                        key = key.strip()
+                        if key.startswith('"') and key.endswith('"'):
+                            key = key[1:-1]
+                        elif key.startswith("'") and key.endswith("'"):
+                            key = key[1:-1]
+                        self._mappings[key] = value.strip()
             # Check if loaded empty
             if (len(self._mappings) == 0):
                 raise ValueError('Mappings are empty!')
