@@ -44,6 +44,11 @@ jobs:
           if [ -f .env.example ]; then
             cp .env.example .env
           fi
-          # Run pytest via the existing test script or directly
-          # Using PYTHONPATH=src directly to ensure isolation
-          PYTHONPATH=src pytest test/
+          # Run pytest and generate XML report
+          pytest test/ --junitxml=pytest.xml
+
+      - name: Publish Test Report
+        uses: test-summary/action@v2
+        with:
+          paths: "pytest.xml"
+        if: always()
