@@ -93,7 +93,7 @@ class Menu:
             # Engine key is a special case
             if (key == 'engine') and not isinstance(value, str | None):
                 value = value.__name__
-            status.append(f'[bold cyan]{title}:[/bold cyan] {value}')
+            status.append(f'[bold magenta]{title}:[/bold magenta] {value}')
         # Set and show, to always show
         self._status.set('\n'.join(status))
         self._status.show()
@@ -101,7 +101,7 @@ class Menu:
         if self.state.get('rules'):
             rules: list[str] = []
             for rule in self.data.rules:
-                rules.append(f'[bold cyan]{rule}:[/bold cyan]')
+                rules.append(f'[bold yellow]{rule}[/bold yellow]')
             if (len(rules) > 0):
                 # Set and show, to always show, if we get here
                 self._rules.set('\n'.join(rules))
@@ -109,8 +109,8 @@ class Menu:
         # Show variables, if any
         if self.state.get('variables'):
             vars: list[str] = []
-            for var in self.data.variables:
-                vars.append(f'[bold cyan]{var}[/bold cyan]')
+            for var in self.data.variables.values():
+                vars.append(f'[bold green]{var}[/bold green]')
             if (len(vars) > 0):
                 # Set and show, to always show, if we get here
                 self._vars.set('\n'.join(vars))
