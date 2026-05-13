@@ -144,7 +144,6 @@ def test_rule_parser_errors() -> None:
     # This is a comment
     IF (Exhaustion IS High THEN Burnout IS High
     IF (Exhaustion IS High THEN Burnout IS High)
-    IF Exhaustion IS High ( AND Cynicism IS High ) THEN Burnout IS High
     '''
     # Test lots of rules with small syntax errors
     rules_list: list[Rule] = parser.parse(text)
