@@ -161,6 +161,8 @@ class Plotter:
         for row in range(len(self._data.results[key])):
             # Update progress, if any
             if progress_fn: progress_fn(row, nrows)
+            # Plot result
+            self.plot_result(key, path, row_idx=row)
         # Update progress, if any
         if progress_fn: progress_fn(nrows, nrows)
 
