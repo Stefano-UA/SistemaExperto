@@ -14,9 +14,9 @@ def test_mbi_engine() -> None:
     '''
     Test Maslach Burnout Inventory deterministic evaluation.
 
-    Feed raw exhaustion and cynicism data into the MBIEngine, and assert that
-    it correctly calculates the average MBI score and sets the high-risk boolean
-    flag strictly based on its static thresholds.
+    Feed raw exhaustion, despersonalization and fulfillment data into the MBIEngine,
+    and assert that it correctly classifies the risk level ('Low', 'Mid', 'High')
+    based on the configured dimension ranges.
     '''
     # Inject our range definitions
     MBIEngine.ranges = {

@@ -114,7 +114,7 @@ class Data:
             # Check if loaded empty
             if self._data.empty:
                 raise ValueError('Data is empty!')
-            # Apply mappings if loaded
+            # Apply mappings (summing columns) if loaded
             if not (self._mappings is None):
                 self._data = self._data.T.groupby(self._mappings).sum().T
             return True
@@ -124,7 +124,7 @@ class Data:
 
     def load_map(self, path: str) -> bool:
         '''
-        Load column mappings from a .map file.
+        Load column mappings from a .map file and apply summation to the data.
 
         :param path: Path to the mapping file.
         :type path: str
@@ -147,7 +147,7 @@ class Data:
             # Check if loaded empty
             if (len(self._mappings) == 0):
                 raise ValueError('Mappings are empty!')
-            # Apply mappings if data loaded
+            # Apply mappings (summing columns) if data loaded
             if not (self._data is None):
                 self._data = self._data.T.groupby(self._mappings).sum().T
             return True

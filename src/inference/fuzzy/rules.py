@@ -70,10 +70,10 @@ class ThenNode(BranchNode):
     @override
     def evaluate(self, context: dict[str, dict[str, np.ndarray]]) -> np.ndarray:
         '''
-        Evaluate the fuzzy THEN using np.fmax.
+        Evaluate the fuzzy THEN operation using np.fmin.
 
         :param context: Dictionary containing data/context for evaluation.
-        :return: Minimum membership value.
+        :return: Activation strength as a membership function.
         '''
         assert(self._right is not None)
         return OPERATORS['THEN'](

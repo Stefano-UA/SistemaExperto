@@ -3,7 +3,7 @@ Deterministic MBI Engine
 ========================
 This module implements the MBIEngine, inheriting the BaseEngine Template Method.
 It evaluates raw data using standard deterministic Maslach Burnout Inventory
-thresholds to output simple boolean risk classifications.
+thresholds to output categorical risk classifications ('Low', 'Mid', 'High').
 '''
 import pandas as pd
 from typing import override
@@ -46,10 +46,10 @@ class MBIEngine(BaseEngine):
     @override
     def _eval(self, data: pd.Series) -> pd.Series:
         '''
-        Evaluate a single data row.
+        Evaluate a single data row to determine the MBI risk level.
 
-        :param data: Pandas Series containing row data.
-        :return: Pandas Series containing evaluation results.
+        :param data: Pandas Series containing row data for each dimension.
+        :return: Pandas Series containing the 'mbi_risk_level'.
         '''
         # Values dictionary
         vals: dict[str, str] = {}
