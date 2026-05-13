@@ -1,0 +1,7 @@
+IF AgotamientoEmocional IS Alto AND Despersonalizacion IS Alto AND RealizacionPersonal IS Bajo THEN Burnout IS Alto
+IF AgotamientoEmocional IS Bajo AND Despersonalizacion IS Bajo AND RealizacionPersonal IS Alto THEN Burnout IS Bajo
+IF HorasConexionDigital IS Excesivas AND Cansancio IS Alto AND CargaTrabajoPercibida IS Abrumadora THEN Burnout IS Alto
+IF TiempoOcio IS Bajo AND (Cansancio IS Alto OR CargaTrabajoPercibida IS Abrumadora) THEN Burnout IS Alto
+IF TiempoOcio IS Medio AND (Cansancio IS Medio OR HorasConexionDigital IS Medias) THEN Burnout IS Medio
+IF (TiempoOcio IS Alto OR HorasConexionDigital IS Bajas) AND Cansancio IS Bajo THEN Burnout IS Bajo
+IF Cansancio IS Bajo AND HorasConexionDigital IS Bajas AND CargaTrabajoPercibida IS Ligera THEN Burnout IS Bajo

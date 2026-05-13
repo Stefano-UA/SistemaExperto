@@ -1,0 +1,63 @@
+"[(A.E.) Me siento emocionalmente defraudado en mi trabajo]" -> AgotamientoEmocional
+"[(A.E.) Cuando termino mi jornada de trabajo me siento agotado]" -> AgotamientoEmocional
+"[(A.E.) Cuando me levanto por la mañana y me enfrento a otra jornada de trabajo me siento agotado]" -> AgotamientoEmocional
+"[(A.E.) Me siento como si estuviera al límite de mis posibilidades]" -> AgotamientoEmocional
+"[(A.E.) Siento que trabajar todo el día con la gente me cansa]" -> AgotamientoEmocional
+"[(A.E.) Siento que trabajar en contacto directo con la gente me cansa]" -> AgotamientoEmocional
+"[(A.E.) Siento que mi trabajo me está desgastando]" -> AgotamientoEmocional
+"[(A.E.) Me siento frustrado por el trabajo]" -> AgotamientoEmocional
+"[(A.E.) Siento que estoy demasiado tiempo en mi trabajo]" -> AgotamientoEmocional
+"[(R.P.) Siento que puedo entender fácilmente a las personas que tengo que atender]" -> RealizacionPersonal
+"[(R.P.) Siento que trato con mucha efectividad los problemas de las personas a las que]" -> RealizacionPersonal
+"[(R.P.) Siento que estoy influyendo positivamente en las vidas de otras personas a través de mi trabajo]" -> RealizacionPersonal
+"[(R.P.) Me siento muy enérgico en mi trabajo]" -> RealizacionPersonal
+"[(R.P.) Siento que en mi trabajo los problemas emocionales son tratados de forma adecuada]" -> RealizacionPersonal
+"[(R.P.) Creo que consigo muchas cosas valiosas en este trabajo]" -> RealizacionPersonal
+"[(R.P.) Siento que puedo crear con facilidad un clima agradable en mi trabajo]" -> RealizacionPersonal
+"[(R.P.) Me siento estimulado después de haber trabajado íntimamente con quienes tengo que atender]" -> RealizacionPersonal
+"[(D.) Siento que estoy tratando a algunos beneficiados de mí como si fueran objetos impersonales]" -> Despersonalizacion
+"[(D.) Siento que me he hecho más duro con la gente]" -> Despersonalizacion
+"[(D.) Me preocupa que este trabajo me esté endureciendo emocionalmente]" -> Despersonalizacion
+"[(D.) Siento que realmente no me importa lo que les ocurra a las personas a las que]" -> Despersonalizacion
+"[(D.) Me parece que los beneficiarios de mi trabajo me culpan de algunos problemas]" -> Despersonalizacion
+"[(H.C.D.) Siento que paso demasiadas horas conectado a dispositivos digitales por motivos de trabajo.]" -> HorasConexionDigital
+"[(H.C.D.) Me resulta difícil desconectarme del correo mensajes o plataformas laborales al terminar mi jornada.]" -> HorasConexionDigital
+"[(H.C.D.) Siento que debo estar disponible digitalmente incluso fuera de mi horario laboral.]" -> HorasConexionDigital
+"[(H.C.D.) Las notificaciones correos o mensajes de trabajo interrumpen mi descanso o tiempo personal.]" -> HorasConexionDigital
+"[(H.C.D.) Siento que el uso constante de herramientas digitales aumenta mi agotamiento.]" -> HorasConexionDigital
+"[(H.C.D.) Me cuesta dejar de revisar asuntos laborales en el teléfono computadora o plataformas digitales.]" -> HorasConexionDigital
+"[(H.C.D.) Siento que la conexión digital prolongada afecta negativamente mi bienestar.]" -> HorasConexionDigital
+"[(C.) Me siento cansado incluso antes de comenzar mis actividades laborales.]" -> Cansancio
+"[(C.) Siento que mi energía disminuye rápidamente durante la jornada de trabajo.]" -> Cansancio
+"[(C.) Cuando termino mi trabajo siento que no tengo fuerzas para realizar otras actividades.]" -> Cansancio
+"[(C.) Me siento físicamente agotado por las exigencias de mi trabajo.]" -> Cansancio
+"[(C.) Siento cansancio mental al tener que concentrarme durante mucho tiempo.]" -> Cansancio
+"[(C.) Me cuesta recuperarme del cansancio después de una jornada laboral.]" -> Cansancio
+"[(C.) Siento que el cansancio acumulado afecta mi rendimiento en el trabajo.]" -> Cansancio
+"[(C.T.P.) Siento que tengo más tareas de las que puedo realizar adecuadamente.]" -> CargaTrabajoPercibida
+"[(C.T.P.) Siento que el tiempo disponible no es suficiente para cumplir con mis responsabilidades laborales.]" -> CargaTrabajoPercibida
+"[(C.T.P.) Me siento presionado por la cantidad de trabajo que debo realizar.]" -> CargaTrabajoPercibida
+"[(C.T.P.) Siento que debo trabajar a un ritmo excesivo para cumplir con mis obligaciones.]" -> CargaTrabajoPercibida
+"[(C.T.P.) Siento que la acumulación de tareas afecta mi tranquilidad y bienestar.]" -> CargaTrabajoPercibida
+"[(C.T.P.) Me resulta difícil atender todas mis tareas sin sentirme sobrecargado.]" -> CargaTrabajoPercibida
+"[(T.O.) Puedo dedicar tiempo a mis hobbies o actividades personales.]" -> TiempoOcio
+"[(T.O.) Dispongo de tiempo para compartir con amigos o familiares.]" -> TiempoOcio
+"[(T.O.) Dedico parte de mi semana al entretenimiento o la relajación.]" -> TiempoOcio
+"[(T.O.) Siento que tengo un buen equilibrio entre trabajo y descanso.]" -> TiempoOcio
+"[(T.O.) Puedo desconectarme fácilmente de mis obligaciones.]" -> TiempoOcio
+"[(T.O.) Tengo tiempo para realizar actividades recreativas.]" -> TiempoOcio
+"[(R.) Recibo reconocimiento por mis logros.]" -> Recompensa
+"[(R.) Las recompensas que recibo aumentan mi motivación.]" -> Recompensa
+"[(R.) Siento motivación gracias a los incentivos que obtengo.]" -> Recompensa
+"[(R.) Me siento valorado en mi entorno laboral o académico.]" -> Recompensa
+"[(R.) Mi esfuerzo suele ser reconocido.]" -> Recompensa
+"[(R.) Siento satisfacción con las recompensas que recibo.]" -> Recompensa
+"[(R.) Las recompensas que recibo son justas.]" -> Recompensa
+"[(A.F.) Realizo ejercicio físico de manera frecuente.]" -> Actividad Fisica
+"[(A.F.) Camino o me movilizo constantemente durante el día.]" -> Actividad Fisica
+"[(A.F.) Practico actividades recreativas que requieren movimiento físico.]" -> Actividad Fisica
+"[(A.F.) Me siento físicamente activo la mayor parte de la semana.]" -> Actividad Fisica
+"[(A.F.) Mi rutina diaria incluye esfuerzo físico moderado o alto.]" -> Actividad Fisica
+"[(A.F.) Mantengo una rutina físicamente activa.]" -> Actividad Fisica
+"[(A.F.) Me siento con energía para realizar ejercicio físico.]" -> Actividad Fisica
+"[(A.F.) Dedico tiempo a cuidar mi condición física.]" -> Actividad Fisica
