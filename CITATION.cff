@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - given-names: "Stefano"
+    family-names: "Bia"
+  - given-names: "Younes"
+    family-names: "Laihi"
+  - given-names: "Alfonso"
+    family-names: "Íñiguez"
+  - given-names: "Mohammed"
+    family-names: "Ali"
+title: "BurnoutExys"
+version: 1.0.0
+date-released: 2026-05-13
+url: "https://github.com/Stefano-UA/SistemaExperto"

@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.env
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Builds / PyInstaller
+build/
+dist/
+*.egg-info/
+*.spec
+
+# Sphinx Documentation
+docs/_build/html
+docs/_build/latex
+docs/modules.rst
+docs/tests.rst
+docs/data.rst
+docs/evaluation.rst
+docs/inference.rst
+docs/inference.engines.rst
+docs/inference.fuzzy.rst
+docs/main.rst
+docs/ui.rst
+docs/visualization.rst
+docs/test_*.rst
