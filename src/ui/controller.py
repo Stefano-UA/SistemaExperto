@@ -180,6 +180,7 @@ class Controller:
         choices: tuple[dict[str, str], ...] = tuple([{'title': id, 'value': id} for id in self._data.results.keys()])
         # Ask user to select one or two results from the list
         selected: list[str] | None = Chooser(1, 2, choices, self._console).run()
+        self._console.print('') # Add newline after choosing options
         if (selected is None): return
         # Initialize plotter to plot data
         plotter: Plotter = Plotter(self._data)
