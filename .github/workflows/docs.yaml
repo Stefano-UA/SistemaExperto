@@ -3,7 +3,7 @@ name: Build & Deploy Documentation
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - "src/**"
       - "scripts/docs.sh"
