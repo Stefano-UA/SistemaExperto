@@ -72,15 +72,18 @@ def test_map(tmp_path: Path) -> None:
     '''
     # Define mappings and create temporary .map file
     mappings: dict[str, str] = {
-        'Q1': 'question_1',
-        'Q2': 'question_2'
+        'Q1': 'K1',
+        'Q3': 'K1',
+        'Q2': 'K2',
+        'Q4': 'K2',
+        'Q5': 'K3',
     }
     map_file: Path = (tmp_path / 'test_mappings.map')
     with open(map_file, 'w', encoding='utf-8') as file:
         for key, value in mappings.items():
             _ = file.write(f'{key} -> {value}\n')
     # Create dummy CSV data matching the mapping keys
-    df: pd.DataFrame = pd.DataFrame({'Q1': [1], 'Q2': [2]})
+    df: pd.DataFrame = pd.DataFrame({'Q1': [1], 'Q2': [2], 'Q3': [3], 'Q4': [4], 'Q5': [5]})
     csv_file: Path = (tmp_path / 'test.csv')
     df.to_csv(csv_file, index=False)
     # Instantiate container and apply mapping before loading CSV
@@ -88,13 +91,21 @@ def test_map(tmp_path: Path) -> None:
     assert(data.load_map(str(map_file)) is True)
     assert(data.load_csv(str(csv_file)) is True)
     # Verify that columns were renamed according to the map
-    assert(list(data.data.columns) == ['question_1', 'question_2'])
+    assert(list(data.data.columns) == ['K1', 'K2', 'K3'])
+    # Verify that data was grouped
+    assert(data.data['K1'].values.tolist() == [4])
+    assert(data.data['K2'].values.tolist() == [6])
+    assert(data.data['K3'].values.tolist() == [5])
     # Instantiate container and apply mapping after loading CSV
     data = Data()
     assert(data.load_csv(str(csv_file)) is True)
     assert(data.load_map(str(map_file)) is True)
     # Verify that columns were renamed according to the map
-    assert(list(data.data.columns) == ['question_1', 'question_2'])
+    assert(list(data.data.columns) == ['K1', 'K2', 'K3'])
+    # Verify that data was grouped
+    assert(data.data['K1'].values.tolist() == [4])
+    assert(data.data['K2'].values.tolist() == [6])
+    assert(data.data['K3'].values.tolist() == [5])
 
 def test_map_failure() -> None:
     '''
