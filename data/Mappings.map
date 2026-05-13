@@ -53,11 +53,11 @@
 "[(R.) Mi esfuerzo suele ser reconocido.]" -> Recompensa
 "[(R.) Siento satisfacción con las recompensas que recibo.]" -> Recompensa
 "[(R.) Las recompensas que recibo son justas.]" -> Recompensa
-"[(A.F.) Realizo ejercicio físico de manera frecuente.]" -> Actividad Fisica
-"[(A.F.) Camino o me movilizo constantemente durante el día.]" -> Actividad Fisica
-"[(A.F.) Practico actividades recreativas que requieren movimiento físico.]" -> Actividad Fisica
-"[(A.F.) Me siento físicamente activo la mayor parte de la semana.]" -> Actividad Fisica
-"[(A.F.) Mi rutina diaria incluye esfuerzo físico moderado o alto.]" -> Actividad Fisica
-"[(A.F.) Mantengo una rutina físicamente activa.]" -> Actividad Fisica
-"[(A.F.) Me siento con energía para realizar ejercicio físico.]" -> Actividad Fisica
-"[(A.F.) Dedico tiempo a cuidar mi condición física.]" -> Actividad Fisica
+"[(A.F.) Realizo ejercicio físico de manera frecuente.]" -> ActividadFisica
+"[(A.F.) Camino o me movilizo constantemente durante el día.]" -> ActividadFisica
+"[(A.F.) Practico actividades recreativas que requieren movimiento físico.]" -> ActividadFisica
+"[(A.F.) Me siento físicamente activo la mayor parte de la semana.]" -> ActividadFisica
+"[(A.F.) Mi rutina diaria incluye esfuerzo físico moderado o alto.]" -> ActividadFisica
+"[(A.F.) Mantengo una rutina físicamente activa.]" -> ActividadFisica
+"[(A.F.) Me siento con energía para realizar ejercicio físico.]" -> ActividadFisica
+"[(A.F.) Dedico tiempo a cuidar mi condición física.]" -> ActividadFisica
