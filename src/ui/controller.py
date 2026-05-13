@@ -57,10 +57,10 @@ class Controller:
         self._engine: int = 0
         # File browsers for each kind of loading
         self._browsers: dict[str, FileBrowser] = {
-            'data': FileBrowser('.', ('.csv',)),
-            'rules': FileBrowser('.', ('.rules',)),
-            'mappings': FileBrowser('.', ('.map',)),
-            'variables': FileBrowser('.', ('.vars',))
+            'data': FileBrowser(os.getenv('DATAPATH', '.'), ('.csv',)),
+            'rules': FileBrowser(os.getenv('DATAPATH', '.'), ('.rules',)),
+            'mappings': FileBrowser(os.getenv('DATAPATH', '.'), ('.map',)),
+            'variables': FileBrowser(os.getenv('DATAPATH', '.'), ('.vars',))
         }
         # State of the controller, accessed by menu
         self._state: dict[str, str | type[BaseEngine] | None] = {
