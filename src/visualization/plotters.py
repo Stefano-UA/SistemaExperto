@@ -78,6 +78,8 @@ class Plotter:
             if progress_fn: progress_fn(ix, nvars)
             # Plot variable
             self.plot_variable(var, path)
+        # Update progress, if any
+        if progress_fn: progress_fn(nvars, nvars)
 
     def plot_result(self, key: str, path: str, row_idx: int=0) -> None:
         '''
@@ -159,7 +161,8 @@ class Plotter:
         for row in range(len(self._data.results[key])):
             # Update progress, if any
             if progress_fn: progress_fn(row, nrows)
-            self.plot_result(key, path, row_idx=row)
+        # Update progress, if any
+        if progress_fn: progress_fn(nrows, nrows)
 
     def plot_comparison(self, key1: str, key2: str, path: str) -> None:
         '''
