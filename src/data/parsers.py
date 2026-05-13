@@ -96,7 +96,7 @@ class VariableParser(Parser):
                 args = [float(a) for a in args]
                 # Get membership function
                 mf = cast(
-                    Callable[[np.ndarray, list[float]], np.ndarray],
+                    Callable[..., np.ndarray],
                     getattr(fuzz, fn)
                 )
                 # Compute membership depending on mf signature

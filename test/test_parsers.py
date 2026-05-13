@@ -7,7 +7,7 @@ import numpy as np
 import skfuzzy as fuzz
 from typing import Callable, cast
 
-from inference.fuzzy import Variable
+from inference.fuzzy import Rule, Variable
 from data.parsers import RuleParser, VariableParser
 
 def test_variable_parser() -> None:
@@ -61,7 +61,7 @@ def test_variable_parser() -> None:
     ]:
         # Get membership functions
         mf = cast(
-            Callable[[np.ndarray, list[float]], np.ndarray],
+            Callable[..., np.ndarray],
             getattr(fuzz, fn)
         )
         # Compute membership depending on mf signature
@@ -118,7 +118,7 @@ def test_rule_parser() -> None:
     IF NOT Exhaustion IS High THEN Burnout IS Low
     """
     # Execute parsing
-    rules_list: list = parser.parse(text)
+    rules_list: list[Rule] = parser.parse(text)
     # Verify rules were parsed correctly
     assert(len(rules_list) == 3)
     assert(str(rules_list[0]) == 'IF ((Exhaustion IS High AND Cynicism IS High) OR Personalization IS Low) THEN Burnout IS High')
@@ -148,3 +148,4 @@ def test_rule_parser_errors() -> None:
     '''
     # Test lots of rules with small syntax errors
     rules_list: list[Rule] = parser.parse(text)
+    assert(len(rules_list) == 0)

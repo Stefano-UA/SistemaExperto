@@ -74,7 +74,7 @@ class MBIEngine(BaseEngine):
                     return pd.Series({'mbi_risk_level': 'Low'})
         # Mid risk level
         return pd.Series({'mbi_risk_level': 'Mid'})
-        
+
     @override
     def _append(self, results: pd.Series) -> None:
         '''
