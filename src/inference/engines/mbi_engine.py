@@ -19,9 +19,9 @@ class MBIEngine(BaseEngine):
     :vartype ranges: dict[str, tuple[float, float]]
     '''
     ranges: dict[str, tuple[float, float]] = {
-        'exhaustion': (13.5, 40.5), # Max 54 in our case
-        'despersonalization': (7.5, 22.5), # Max 30 in our case
-        'fullfilment': (12.0, 36.0) # Max 48 in our case
+        'exhaustion': (11.25, 33.75), # Max 45 in our case
+        'despersonalization': (6.25, 18.75), # Max 25 in our case
+        'fullfilment': (10, 30) # Max 40 in our case
     } # Set based on 25 and 75 percentiles
 
     @property
