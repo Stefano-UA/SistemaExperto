@@ -5,6 +5,6 @@ HERE="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 
 source "${HERE}/init.sh"
 
-cd "${HERE}/../src" || exit 1
+export PYTHONPATH="${HERE}/../src:${PYTHONPATH}"
 echo "Starting the application..."
-python main.py
+python "${HERE}/../src/main.py"
