@@ -10,6 +10,10 @@ on:
       - ".github/workflows/docs.yaml"
   workflow_dispatch:
 
+env:
+  # Opt out of Node 20 deprecation warnings
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
