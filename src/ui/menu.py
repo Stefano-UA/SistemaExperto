@@ -59,7 +59,7 @@ class Menu:
         self._rules: Display = Display('Loaded Rules', self._console)
         self._vars: Display = Display('Loaded Variables', self._console)
         self._output: Display = Display('Command Output', self._console)
-        self._controller: Controller = Controller(self._output)
+        self._controller: Controller = Controller(self._console, self._output)
 
     @property
     def state(self) -> dict[str, str | type[BaseEngine] | None]:

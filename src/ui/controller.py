@@ -8,14 +8,16 @@ Engines), ensuring state consistency and managing the execution lifecycle.
 '''
 import os
 from typing import cast
+from rich.console import Console
 from collections.abc import Callable
 
 from data import Data
+from visualization.plotters import Plotter
 from inference.engines import BaseEngine, MBIEngine, FuzzyEngine
-from ui.progress import ProgressBar
-#from .chooser import Chooser
+from .chooser import Chooser
 from .display import Display
 from .browser import FileBrowser
+from .progress import ProgressBar
 
 class Controller:
     '''
@@ -38,13 +40,15 @@ class Controller:
     '''
     engines: tuple[type[BaseEngine], ...] = (MBIEngine, FuzzyEngine)
 
-    def __init__(self, display: Display) -> None:
+    def __init__(self, console: Console, display: Display) -> None:
         '''
         Initialize the Controller.
 
         :param display: Display instance for showing output messages.
         '''
         self._data: Data = Data()
+        # Output console
+        self._console: Console = console
         # Output display
         self._display: Display = display
         # Output progress bar
@@ -168,4 +172,44 @@ class Controller:
             # Evaluate results
             engine.evaluate(self._data, progress_fn=progress_fn)
 
-    def generate_visualizations(self) -> None: pass
+    def generate_visualizations(self) -> None:
+        '''
+        Generate and save configured visualizations.
+        '''
+        # Get results choices available
+        choices: tuple[dict[str, str], ...] = tuple([{'title': id, 'value': id} for id in self._data.results.keys()])
+        # Ask user to select one or two results from the list
+        selected: list[str] | None = Chooser(1, 2, choices, self._console).run()
+        if (selected is None): return
+        # Initialize plotter to plot data
+        plotter: Plotter = Plotter(self._data)
+        out: str = os.getenv('VISOUT', './visuals')
+        # Get progress bar context
+        with self._progressbar as pg:
+            # Plot depending on selected results
+            if (len(selected) == 1):
+                key: str = selected[0]
+                # Set task in the progress bar
+                taskid = pg.add_task("[cyan]Generating variable visualizations...", total=len(self._data.variables))
+                # Function to update task progress and total
+                def progress_fn_var(current: int, total: int) -> None:
+                    if (pg.tasks[taskid].total != total):
+                        pg.update(taskid, total=total)
+                    pg.update(taskid, completed=current)
+                # Plot variables
+                plotter.plot_variables(out, progress_fn=progress_fn_var)
+                # Set task in the progress bar
+                taskid = pg.add_task("[cyan]Generating results visualizations...", total=len(self._data.results[key]))
+                # Function to update task progress and total
+                def progress_fn_results(current: int, total: int) -> None:
+                    if (pg.tasks[taskid].total != total):
+                        pg.update(taskid, total=total)
+                    pg.update(taskid, completed=current)
+                # Plot results
+                plotter.plot_results(key, out, progress_fn=progress_fn_results)
+                self._display.set(f'Visualizations generated in {out}/ for {key}.', 'success')
+            elif (len(selected) == 2):
+                key1, key2 = selected
+                # Plot comparison
+                plotter.plot_comparison(key1, key2, out)
+                self._display.set(f'Comparative visualization generated in {out}/ for {key1} and {key2}.', 'success')

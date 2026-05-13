@@ -30,7 +30,7 @@ class ProgressBar:
             TextColumn("[progress.description]{task.description}"),
             BarColumn(),
             TaskProgressColumn(),
-            MofNCompleteColumn(),
+            MofNCompleteColumn()
         ).__enter__()
         return self._progress
 
