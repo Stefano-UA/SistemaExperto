@@ -2,7 +2,10 @@
 Tests for the parser module.
 '''
 import pytest
+import inspect
+import numpy as np
 import skfuzzy as fuzz
+from typing import Callable, cast
 
 from inference.fuzzy import Variable
 from data.parsers import RuleParser, VariableParser
@@ -56,7 +59,17 @@ def test_variable_parser() -> None:
         (2, 'Medium', 'trimf',   [5, 6, 7]),      # Triangle: abc
         (2, 'High',   'trapmf',  [5, 5, 7, 10]),  # Trapezoid: abcd
     ]:
-        assert (vars_list[var].terms[term] == getattr(fuzz, fn)(vars_list[var].universe, params)).all() # pyright: ignore[reportAny]
+        # Get membership functions
+        mf = cast(
+            Callable[[np.ndarray, list[float]], np.ndarray],
+            getattr(fuzz, fn)
+        )
+        # Compute membership depending on mf signature
+        if (len(inspect.signature(mf).parameters) == 2):
+            expected = mf(vars_list[var].universe, params)
+        else:
+            expected = mf(vars_list[var].universe, *params)
+        assert (vars_list[var].terms[term] == expected).all() # pyright: ignore[reportAny]
 
 def test_variable_parser_errors() -> None:
     '''
@@ -71,11 +84,11 @@ def test_variable_parser_errors() -> None:
     # Prepare multiline DSL string with comments and various formats
     text: str = '''
     # Mixed MF types test
-    Exhaustion <0, 10: (Low <trimf, 0, 2, 4>; High <gaussmf, 10, 2>)
+    Exhaustion <0, 10>: (Low <tramf, 0, 2, 4>; High <gaussmf, 10, 2>)
     Exhaustion <0 10>: (Low <trimf, 0, 2, 4>; High <gaussmf, 10, 2>)
     Exhaustion <0, 10>: .(Low <trimf, 0, 2, 4>; High <gaussmf, 10, 2>)
     Cynicism <0, 5> (Low <trapmf, 0, 0, 1, 2>; High <gbellmf, 2, 4, 5>)
-    Cynicism <0, 5>: (Low <trapmf, 0, 0, 1, 2>; High <gbellmf, 2, 4, 5)
+    Cynicism <0, 5>: (Low <trapmf, 0, 0, 1 2>; High <gbellmf, 2, 4, 5>)
     Cynicism <0, 5>: (Low <trapmf, 10, 0, 1, 2>; High <gbellmf, 2, 4, 5>)
     # Testing different range and parameters
     # This is a comment

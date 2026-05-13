@@ -5,6 +5,7 @@ This module provides concrete parser implementations for transforming raw
 text file payloads (.rules, .vars) into structured, operable domain objects
 such as LinguisticVariables and Abstract Syntax Trees for fuzzy logic rules.
 '''
+import inspect
 import numpy as np
 import skfuzzy as fuzz
 from abc import ABC, abstractmethod
@@ -93,14 +94,24 @@ class VariableParser(Parser):
                 if not fn.endswith('mf'): return None
                 # Ensure arguments are floats
                 args = [float(a) for a in args]
-                # Add the set to the variable
-                variable.add_term(
-                    setname,
-                    cast(
-                        Callable[[np.ndarray, list[float]], np.ndarray],
-                        getattr(fuzz, fn)
-                    )(universe, args)
+                # Get membership function
+                mf = cast(
+                    Callable[[np.ndarray, list[float]], np.ndarray],
+                    getattr(fuzz, fn)
                 )
+                # Compute membership depending on mf signature
+                if (len(inspect.signature(mf).parameters) == 2):
+                    # Add the set to the variable
+                    variable.add_term(
+                        setname,
+                        mf(universe, args)
+                    )
+                else:
+                    # Add the set to the variable
+                    variable.add_term(
+                        setname,
+                        mf(universe, *args)
+                    )
             return variable
         except Exception:
             return None
