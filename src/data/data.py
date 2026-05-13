@@ -116,7 +116,7 @@ class Data:
                 raise ValueError('Data is empty!')
             # Apply mappings if loaded
             if not (self._mappings is None):
-                self._data = self._data.groupby(self._mappings, axis=1).sum()
+                self._data = self._data.T.groupby(self._mappings).sum().T
             return True
         except Exception:
             self._data = None
@@ -149,7 +149,7 @@ class Data:
                 raise ValueError('Mappings are empty!')
             # Apply mappings if data loaded
             if not (self._data is None):
-                self._data = self._data.groupby(self._mappings, axis=1).sum()
+                self._data = self._data.T.groupby(self._mappings).sum().T
             return True
         except Exception:
             self._mappings = None
