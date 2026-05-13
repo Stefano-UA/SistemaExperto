@@ -45,7 +45,7 @@ def test_controller_initialization() -> None:
     '''
     # Create display and controller
     display: Display = Display('Test', Console())
-    controller: Controller = Controller(display)
+    controller: Controller = Controller(Console(), display)
     # Check the state is correctly initialized
     assert isinstance(controller.state, dict)
     assert(controller.state['data'] is None)
@@ -67,7 +67,7 @@ def test_controller_load_data(tmp_path: Path, mocker: MockerFixture) -> None:
     df.to_csv(file_path, index=False)
     # Create display and controller
     display: Display = Display('Test', Console())
-    controller: Controller = Controller(display)
+    controller: Controller = Controller(Console(), display)
     # Mock the FileBrowser to return our path
     _ = mocker.patch('ui.browser.FileBrowser.run', return_value=str(file_path))
     # Check the load returns true and data is equal to what it should
@@ -94,7 +94,7 @@ def test_controller_load_mappings(tmp_path: Path, mocker: MockerFixture) -> None
             _ = file.write(f'{key} -> {value}\n')
     # Create display and controller
     display: Display = Display('Test', Console())
-    controller: Controller = Controller(display)
+    controller: Controller = Controller(Console(), display)
     # Mock the FileBrowser to return our path
     _ = mocker.patch('ui.browser.FileBrowser.run', return_value=str(file_path))
     # Check the load returns true and data is equal to what it should
@@ -115,7 +115,7 @@ def test_controller_load_rules(tmp_path: Path, mocker: MockerFixture) -> None:
         _ = file.write('IF Var1 IS Set1 AND Var2 IS Set4 OR NOT Var3 IS Set7 THEN Burnout IS high\n')
     # Create display and controller
     display: Display = Display('Test', Console())
-    controller: Controller = Controller(display)
+    controller: Controller = Controller(Console(), display)
     # Mock the FileBrowser to return our path
     _ = mocker.patch('ui.browser.FileBrowser.run', return_value=str(file_path))
     # Check the load returns true and data is equal to what it should
@@ -138,7 +138,7 @@ def test_controller_load_variables(tmp_path: Path, mocker: MockerFixture) -> Non
         _ = file.write('Burnout<0, 10>: (low<trapmf, 0, 0, 2, 4>; high<trapmf, 6, 8, 10, 10>)\n')
     # Create display and controller
     display: Display = Display('Test', Console())
-    controller: Controller = Controller(display)
+    controller: Controller = Controller(Console(), display)
     # Mock the FileBrowser to return our path
     _ = mocker.patch('ui.browser.FileBrowser.run', return_value=str(file_path))
     # Check the load returns true and data is equal to what it should
@@ -164,7 +164,7 @@ def test_controller_switch_engine() -> None:
     '''
     # Create display and controller
     display: Display = Display('Test', Console())
-    controller: Controller = Controller(display)
+    controller: Controller = Controller(Console(), display)
     # Assert a bunch of times
     for _ in range(16):
         last: type[BaseEngine] = cast(
@@ -189,7 +189,7 @@ def test_controller_execute_inference(tmp_path: Path, mocker: MockerFixture) -> 
     df.to_csv(file_path, index=False)
     # Create display and controller
     display: Display = Display('Test', Console())
-    controller: Controller = Controller(display)
+    controller: Controller = Controller(Console(), display)
     # Mock the FileBrowser to return our path
     _ = mocker.patch('ui.browser.FileBrowser.run', return_value=str(file_path))
     _ = controller.load_data()
@@ -213,6 +213,28 @@ def test_controller_generate_visualizations(mocker: MockerFixture) -> None:
     '''
     # Create display and controller
     display: Display = Display('Test', Console())
-    controller: Controller = Controller(display)
-    # Do nothing if no data, should not crash
+    controller: Controller = Controller(Console(), display)
+    # Add dummy results
+    controller.data.results['a'] = pd.DataFrame()
+    controller.data.results['b'] = pd.DataFrame()
+    # Mock chooser to return 1 item and mock Plotter
+    _ = mocker.patch('ui.chooser.Chooser.run', return_value=['a'])
+    mock_plot_vars = mocker.patch('visualization.plotters.Plotter.plot_variables')
+    mock_plot_res = mocker.patch('visualization.plotters.Plotter.plot_results')
     controller.generate_visualizations()
+    mock_plot_vars.assert_called_once()
+    mock_plot_res.assert_called_once()
+    # Mock chooser to return 2 items and mock Plotter
+    _ = mocker.patch('ui.chooser.Chooser.run', return_value=['a', 'b'])
+    mock_plot_comp = mocker.patch('visualization.plotters.Plotter.plot_comparison')
+    controller.generate_visualizations()
+    mock_plot_comp.assert_called_once()
+    # Mock chooser to return None
+    _ = mocker.patch('ui.chooser.Chooser.run', return_value=None)
+    mock_plot_vars = mocker.patch('visualization.plotters.Plotter.plot_variables')
+    mock_plot_res = mocker.patch('visualization.plotters.Plotter.plot_results')
+    mock_plot_comp = mocker.patch('visualization.plotters.Plotter.plot_comparison')
+    controller.generate_visualizations()
+    mock_plot_vars.assert_not_called()
+    mock_plot_res.assert_not_called()
+    mock_plot_comp.assert_not_called()
