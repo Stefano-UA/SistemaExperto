@@ -50,10 +50,10 @@ class Plotter:
         variable: Variable = self._data.variables[var]
         # Create figure and axis
         fig, ax = plt.subplots(figsize=(8, 6))
-        ax.set_title(f'Variable {variable.name.capitalize()}')
+        ax.set_title(f'Variable {variable.name}')
         # Plot each term
         for term_name, term_mf in variable.terms.items():
-            ax.plot(variable.universe, term_mf, linewidth=1.5, label=term_name.capitalize())
+            ax.plot(variable.universe, term_mf, linewidth=1.5, label=term_name)
         # Add legend
         ax.legend()
         # Save figure
@@ -109,13 +109,13 @@ class Plotter:
         final_decision: float = cast(float, row['RESULTS'])
         # Create figure and axis
         fig, ax = plt.subplots(figsize=(8, 6))
-        ax.set_title(f'Evaluation Result: {outvar.name.capitalize()} (Row {row_idx})')
+        ax.set_title(f'Evaluation Result: {outvar.name} (Row {row_idx})')
         # Get a modern color map for dynamic term coloring without deprecation warning
         colors: list[str] = cast(list[str], plt.colormaps['tab10'].colors) # pyright: ignore[reportAttributeAccessIssue]
         # Plot each term of the output variable
         for i, (term_name, term_mf) in enumerate(outvar.terms.items()):
             color: str = colors[i % len(colors)]
-            ax.plot(outvar.universe, term_mf, color=color, linewidth=1.0, linestyle='--', label=term_name.capitalize())
+            ax.plot(outvar.universe, term_mf, color=color, linewidth=1.0, linestyle='--', label=term_name)
         # Fill the aggregated area
         ax.fill_between(
             outvar.universe,
