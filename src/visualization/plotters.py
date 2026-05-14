@@ -140,7 +140,8 @@ class Plotter:
         # Add legend
         ax.legend()
         # Save figure
-        out_dir: Path = Path(path) / 'outvar' / key
+        safe_key: str = key.replace('<', '').replace('>', '_')
+        out_dir: Path = Path(path) / 'outvar' / safe_key
         out_dir.mkdir(parents=True, exist_ok=True)
         fig.savefig(out_dir / f'results_row{row_idx}.png', bbox_inches='tight')
         plt.close(fig)
