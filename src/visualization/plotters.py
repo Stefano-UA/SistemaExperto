@@ -207,7 +207,9 @@ class Plotter:
         ax.set_ylabel(f'Model Y ({key2})')
         ax.legend()
         # Save figure
+        safe_key1: str = key1.replace('<', '').replace('>', '_')
+        safe_key2: str = key2.replace('<', '').replace('>', '_')
         out_dir: Path = Path(path) / 'comparisons'
         out_dir.mkdir(parents=True, exist_ok=True)
-        fig.savefig(out_dir / f'{key1}_vs_{key2}.png', bbox_inches='tight')
+        fig.savefig(out_dir / f'{safe_key1}_vs_{safe_key2}.png', bbox_inches='tight')
         plt.close(fig)
