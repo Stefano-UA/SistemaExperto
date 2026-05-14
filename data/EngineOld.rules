@@ -4,7 +4,3 @@ IF TiempoOcio IS Bajo AND (Cansancio IS Alto OR CargaTrabajoPercibida IS Abrumad
 IF TiempoOcio IS Medio AND (Cansancio IS Medio OR HorasConexionDigital IS Medias) THEN Burnout IS Medio
 IF (TiempoOcio IS Alto OR HorasConexionDigital IS Bajas) AND Cansancio IS Bajo THEN Burnout IS Bajo
 IF Cansancio IS Bajo AND HorasConexionDigital IS Bajas AND CargaTrabajoPercibida IS Ligera THEN Burnout IS Bajo
-IF HorasConexionDigital IS Medias AND (Cansancio IS Medio OR CargaTrabajoPercibida IS Manejable) THEN Burnout IS Medio
-IF TiempoOcio IS Medio AND HorasConexionDigital IS Medias AND RealizacionPersonal IS Medio THEN Burnout IS Bajo
-IF AgotamientoEmocional IS Medio OR Despersonalizacion IS Medio THEN Burnout IS Medio
-IF CargaTrabajoPercibida IS Manejable THEN Burnout IS Bajo
