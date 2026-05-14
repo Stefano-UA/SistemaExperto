@@ -238,3 +238,24 @@ def test_controller_generate_visualizations(mocker: MockerFixture) -> None:
     mock_plot_vars.assert_not_called()
     mock_plot_res.assert_not_called()
     mock_plot_comp.assert_not_called()
+
+def test_controller_save_results(tmp_path: Path, mocker: MockerFixture) -> None:
+    '''
+    Test result extraction pipeline execution.
+
+    Verify that the Controller's save_results method executes cleanly
+    without crashing, and successfully extracts the results to disk.
+    '''
+    # Create display and controller
+    display: Display = Display('Test', Console())
+    controller: Controller = Controller(Console(), display)
+    # Add dummy results
+    controller.data.results['a'] = pd.DataFrame()
+    controller.data.results['b'] = pd.DataFrame()
+    # Mock os environment variable to return our path
+    _ = mocker.patch('os.getenv', return_value=tmp_path)
+    # Save results
+    controller.save_results()
+    # Verify files were created
+    assert((tmp_path / 'results' / 'a.csv').exists())
+    assert((tmp_path / 'results' / 'b.csv').exists())

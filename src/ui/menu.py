@@ -39,7 +39,8 @@ class Menu:
         'Load Mappings': 'load_mappings',
         'Load Variables': 'load_variables',
         'Execute Inference': 'execute_inference',
-        'Generate Visualizations': 'generate_visualizations'
+        'Generate Visualizations': 'generate_visualizations',
+        'Save Results': 'save_results'
     }
 
     status_items: dict[str, tuple[str, str]] = {
@@ -133,6 +134,10 @@ class Menu:
                     if not (self.state.get('rules') and self.state.get('variables')):
                         return 'Needs engines and rules loaded'
             case 'Generate Visualizations':
+                # We need some results to make visualizations
+                if (len(self.data.results) == 0):
+                    return 'No results in memory'
+            case 'Save Results':
                 # We need some results to make visualizations
                 if (len(self.data.results) == 0):
                     return 'No results in memory'

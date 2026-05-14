@@ -8,6 +8,7 @@ Engines), ensuring state consistency and managing the execution lifecycle.
 '''
 import os
 from typing import cast
+from pathlib import Path
 from rich.console import Console
 from collections.abc import Callable
 
@@ -214,3 +215,29 @@ class Controller:
                 # Plot comparison
                 plotter.plot_comparison(key1, key2, out)
                 self._display.set(f'Comparative visualization generated in {out}/ for {key1} and {key2}.', 'success')
+
+    def save_results(self) -> None:
+        '''
+        Save current runs from memory to disk.
+        '''
+        # Get output directory and ensure it exists
+        out_dir: Path = Path(os.getenv('DATAPATH', '.')) / 'results'
+        out_dir.mkdir(parents=True, exist_ok=True)
+        # Get progress bar context
+        with self._progressbar as pg:
+            # Set task in the progress bar
+            taskid = pg.add_task("[cyan]Saving results to csv...", total=len(self._data.results))
+            # Init counter
+            current = 0
+            # Loop through results
+            for key, result in self._data.results.items():
+                # Store result as csv in output directory
+                safe_key: str = key.replace('<', '').replace('>', '_')
+                result.to_csv(out_dir / f'{safe_key}.csv')
+                # Update progress bar
+                pg.update(taskid, completed=current)
+                current += 1
+            # Update progress bar
+            pg.update(taskid, completed=len(self._data.results))
+            # Show message so the user know where the results where saved
+            self._display.set(f'Results saved to {out_dir}/.', 'success')
