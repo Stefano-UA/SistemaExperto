@@ -92,6 +92,7 @@ The `scripts/` directory contains bash scripts to automate the development lifec
 | `test.sh` | Executes the `pytest` unit testing suite. |
 | `coverage.sh` | Runs tests and generates a terminal coverage report. |
 | `docs.sh` | Compiles the Sphinx HTML and LaTeX/PDF documentation. |
+| `readme.sh` | Generates the README.md adding dynamic information like the visualizations. |
 
 ## Visual Showcase
 
