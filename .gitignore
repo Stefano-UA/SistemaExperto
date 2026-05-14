@@ -32,3 +32,6 @@ docs/main.rst
 docs/ui.rst
 docs/visualization.rst
 docs/test_*.rst
+
+# Running results
+data/results
