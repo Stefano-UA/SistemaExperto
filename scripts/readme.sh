@@ -80,6 +80,10 @@ The application operates via an interactive terminal loop. The typical execution
 └── .env.example          # Environment variables template
 \`\`\`
 
+## Code Docs
+
+Code documentation is live in [this](https://stefano-ua.github.io/SistemaExperto/) page.
+
 ## Example Data
 
 The repository includes a ready-to-use dataset in the \`data/\` directory to demonstrate the system's capabilities:
