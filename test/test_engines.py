@@ -20,15 +20,15 @@ def test_mbi_engine() -> None:
     '''
     # Inject our range definitions
     MBIEngine.ranges = {
-        'exhaustion': (2.5, 7.5),
-        'despersonalization': (2.5, 7.5),
-        'fullfilment': (2.5, 7.5)
+        'AgotamientoEmocional': (2.5, 7.5),
+        'Despersonalizacion': (2.5, 7.5),
+        'RealizacionPersonal': (2.5, 7.5)
     }
     # Prepare input dataframe with sample scores
     df: pd.DataFrame = pd.DataFrame({
-        'exhaustion': [2.0, 4.0, 8.0], # Low, Mid, High
-        'despersonalization': [2.0, 4.0, 9.5], # Low, Mid, High
-        'fullfilment': [9.0, 3.5, 2.0] # High, Mid, Low
+        'AgotamientoEmocional': [2.0, 4.0, 8.0], # Low, Mid, High
+        'Despersonalizacion': [2.0, 4.0, 9.5], # Low, Mid, High
+        'RealizacionPersonal': [9.0, 3.5, 2.0] # High, Mid, Low
     })
     # Wrap in Data container
     data: Data = Data()
@@ -39,7 +39,9 @@ def test_mbi_engine() -> None:
     result: pd.DataFrame = engine.results
     # Verify calculated scores and risk flags
     assert('mbi_risk_level' in result.columns)
+    assert('mbi_score' in result.columns)
     assert(result['mbi_risk_level'].tolist() == ['Low', 'Mid', 'High'])
+    assert(result['mbi_score'].notna().all())
 
 def test_fuzzy_engine() -> None:
     '''

@@ -1,22 +1,22 @@
-"[(A.E.) Me siento emocionalmente defraudado en mi trabajo]" -> exhaustion
-"[(A.E.) Cuando termino mi jornada de trabajo me siento agotado]" -> exhaustion
-"[(A.E.) Cuando me levanto por la mañana y me enfrento a otra jornada de trabajo me siento agotado]" -> exhaustion
-"[(A.E.) Me siento como si estuviera al límite de mis posibilidades]" -> exhaustion
-"[(A.E.) Siento que trabajar todo el día con la gente me cansa]" -> exhaustion
-"[(A.E.) Siento que trabajar en contacto directo con la gente me cansa]" -> exhaustion
-"[(A.E.) Siento que mi trabajo me está desgastando]" -> exhaustion
-"[(A.E.) Me siento frustrado por el trabajo]" -> exhaustion
-"[(A.E.) Siento que estoy demasiado tiempo en mi trabajo]" -> exhaustion
-"[(R.P.) Siento que puedo entender fácilmente a las personas que tengo que atender]" -> fullfilment
-"[(R.P.) Siento que trato con mucha efectividad los problemas de las personas a las que]" -> fullfilment
-"[(R.P.) Siento que estoy influyendo positivamente en las vidas de otras personas a través de mi trabajo]" -> fullfilment
-"[(R.P.) Me siento muy enérgico en mi trabajo]" -> fullfilment
-"[(R.P.) Siento que en mi trabajo los problemas emocionales son tratados de forma adecuada]" -> fullfilment
-"[(R.P.) Creo que consigo muchas cosas valiosas en este trabajo]" -> fullfilment
-"[(R.P.) Siento que puedo crear con facilidad un clima agradable en mi trabajo]" -> fullfilment
-"[(R.P.) Me siento estimulado después de haber trabajado íntimamente con quienes tengo que atender]" -> fullfilment
-"[(D.) Siento que estoy tratando a algunos beneficiados de mí como si fueran objetos impersonales]" -> despersonalization
-"[(D.) Siento que me he hecho más duro con la gente]" -> despersonalization
-"[(D.) Me preocupa que este trabajo me esté endureciendo emocionalmente]" -> despersonalization
-"[(D.) Siento que realmente no me importa lo que les ocurra a las personas a las que]" -> despersonalization
-"[(D.) Me parece que los beneficiarios de mi trabajo me culpan de algunos problemas]" -> despersonalization
+"[(A.E.) Me siento emocionalmente defraudado en mi trabajo]" -> AgotamientoEmocional
+"[(A.E.) Cuando termino mi jornada de trabajo me siento agotado]" -> AgotamientoEmocional
+"[(A.E.) Cuando me levanto por la mañana y me enfrento a otra jornada de trabajo me siento agotado]" -> AgotamientoEmocional
+"[(A.E.) Me siento como si estuviera al límite de mis posibilidades]" -> AgotamientoEmocional
+"[(A.E.) Siento que trabajar todo el día con la gente me cansa]" -> AgotamientoEmocional
+"[(A.E.) Siento que trabajar en contacto directo con la gente me cansa]" -> AgotamientoEmocional
+"[(A.E.) Siento que mi trabajo me está desgastando]" -> AgotamientoEmocional
+"[(A.E.) Me siento frustrado por el trabajo]" -> AgotamientoEmocional
+"[(A.E.) Siento que estoy demasiado tiempo en mi trabajo]" -> AgotamientoEmocional
+"[(R.P.) Siento que puedo entender fácilmente a las personas que tengo que atender]" -> RealizacionPersonal
+"[(R.P.) Siento que trato con mucha efectividad los problemas de las personas a las que]" -> RealizacionPersonal
+"[(R.P.) Siento que estoy influyendo positivamente en las vidas de otras personas a través de mi trabajo]" -> RealizacionPersonal
+"[(R.P.) Me siento muy enérgico en mi trabajo]" -> RealizacionPersonal
+"[(R.P.) Siento que en mi trabajo los problemas emocionales son tratados de forma adecuada]" -> RealizacionPersonal
+"[(R.P.) Creo que consigo muchas cosas valiosas en este trabajo]" -> RealizacionPersonal
+"[(R.P.) Siento que puedo crear con facilidad un clima agradable en mi trabajo]" -> RealizacionPersonal
+"[(R.P.) Me siento estimulado después de haber trabajado íntimamente con quienes tengo que atender]" -> RealizacionPersonal
+"[(D.) Siento que estoy tratando a algunos beneficiados de mí como si fueran objetos impersonales]" -> Despersonalizacion
+"[(D.) Siento que me he hecho más duro con la gente]" -> Despersonalizacion
+"[(D.) Me preocupa que este trabajo me esté endureciendo emocionalmente]" -> Despersonalizacion
+"[(D.) Siento que realmente no me importa lo que les ocurra a las personas a las que]" -> Despersonalizacion
+"[(D.) Me parece que los beneficiarios de mi trabajo me culpan de algunos problemas]" -> Despersonalizacion

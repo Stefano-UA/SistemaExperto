@@ -19,9 +19,9 @@ class MBIEngine(BaseEngine):
     :vartype ranges: dict[str, tuple[float, float]]
     '''
     ranges: dict[str, tuple[float, float]] = {
-        'exhaustion': (11.25, 33.75), # Max 45 in our case
-        'despersonalization': (6.25, 18.75), # Max 25 in our case
-        'fullfilment': (10, 30) # Max 40 in our case
+        'AgotamientoEmocional': (11.25, 33.75), # Max 45 in our case
+        'Despersonalizacion': (6.25, 18.75), # Max 25 in our case
+        'RealizacionPersonal': (10, 30) # Max 40 in our case
     } # Set based on 25 and 75 percentiles
 
     @property
@@ -41,7 +41,7 @@ class MBIEngine(BaseEngine):
 
         :param meta: Application Data container.
         '''
-        self._results = pd.DataFrame(columns=['mbi_risk_level'])
+        self._results = pd.DataFrame(columns=['mbi_score', 'mbi_risk_level'])
 
     @override
     def _eval(self, data: pd.Series) -> pd.Series:
@@ -62,18 +62,24 @@ class MBIEngine(BaseEngine):
                 vals[key] = 'Mid'
             else:
                 vals[key] = 'High'
+        # Calculate numeric score for comparison mapping (out of 100)
+        # Max values: AE(45), D(25), RP(40 - inverted)
+        normalized_ae = (data['AgotamientoEmocional'] / 45.0) * 100
+        normalized_d = (data['Despersonalizacion'] / 25.0) * 100
+        normalized_rp = ((40.0 - data['RealizacionPersonal']) / 40.0) * 100
+        mbi_score = (normalized_ae + normalized_d + normalized_rp) / 3.0
         # High risk level
-        if (vals['exhaustion'] == 'High'):
-            if (vals['despersonalization'] == 'High'):
-                if (vals['fullfilment'] == 'Low'):
-                    return pd.Series({'mbi_risk_level': 'High'})
+        if (vals['AgotamientoEmocional'] == 'High'):
+            if (vals['Despersonalizacion'] == 'High'):
+                if (vals['RealizacionPersonal'] == 'Low'):
+                    return pd.Series({'mbi_score': mbi_score, 'mbi_risk_level': 'High'})
         # Low risk level
-        if (vals['exhaustion'] == 'Low'):
-            if (vals['despersonalization'] == 'Low'):
-                if (vals['fullfilment'] == 'High'):
-                    return pd.Series({'mbi_risk_level': 'Low'})
+        if (vals['AgotamientoEmocional'] == 'Low'):
+            if (vals['Despersonalizacion'] == 'Low'):
+                if (vals['RealizacionPersonal'] == 'High'):
+                    return pd.Series({'mbi_score': mbi_score, 'mbi_risk_level': 'Low'})
         # Mid risk level
-        return pd.Series({'mbi_risk_level': 'Mid'})
+        return pd.Series({'mbi_score': mbi_score, 'mbi_risk_level': 'Mid'})
 
     @override
     def _append(self, results: pd.Series) -> None:
